@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -178,12 +178,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ),
+              if(gameover) Text("Score: "+score.toString(), style: Theme.of(context).textTheme.headlineMedium,),
               ElevatedButton(onPressed: () async {
                 await newGame();
                 nextGame();
-              }, child: Text(gameover? "Play Again":"Start Game"),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.indigo, foregroundColor: Colors.white),
+              }, child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(gameover? "Play Again":"Start Game", style: Theme.of(context).textTheme.headlineMedium),
               ),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.amber, foregroundColor: Colors.white),
+              ),
+              Column(
+                children: [
+                  Text("How to play?", style: Theme.of(context).textTheme.headlineMedium,),
+                  Text("• The original positions of pumpkin and reference dot will be displayed for 5 seconds. Keep that in mind"
+                        "\n• Next, the positions will shift by 1 or 2 places, you can notice by keeping track of the reference dot"
+                        "\n• With respect to the shift in reference dot, find the position of the pumpkin")
+                ],
+              )
             ],
           ),
         ),
